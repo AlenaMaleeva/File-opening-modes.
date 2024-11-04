@@ -2,28 +2,28 @@ from pprint import pprint
 class Product:
     def __init__(self, name, weight, category):
         self.name = name # название продукта (строка).
-        self.weidht = weight # общий вес товара (дробное число)
+        self.weight = weight # общий вес товара (дробное число)
         self.category = category # категория товара (строка)
     def __str__ (self): # возвращает строку в формате '<название>, <вес>, <категория>'. Все данные в строке разделены запятой с пробелами.
-        return f'{self.name}, {self.weidht}, {self.category} \n'
+        return f'{self.name}, {self.weight}, {self.category} \n'
 class Shop:
     def __init__(self):
-        self.__file_name = 'products.txt2'
+        self.__file_name = 'products.txt4'
     def get_products(self):
-        file = open(self.__file_name, 'r')# считывает всю информацию из файла __file_name
-        pprint(file.read())
-        file.close()#закрывает его и возвращает единую строку со всеми товарами из файла __file_name.
-        return self.__file_name
+        __file_name = open('products.txt', 'r')
+        name_product = __file_name.read()
+        __file_name.close()
 
-    def add(self, *products): # принимает неограниченное количество объектов класса Product.
+        return name_product
+    def add(self, *products):
         for product in products:
-            if product.name in products:
-                print(f'Продукт {product.name} уже есть в магазине')
-            else:
-                file = open(self.__file_name, 'a')
-                file.write(product.__str__())
+            if str(product) not in self.get_products():
+                file = open('products.txt4', 'a+')
+                file.write(f'{str(product)}\n')
                 file.close()
-
+            
+            else:
+                print(f'Продукт {product} уже есть в магазине')
 
 
 
